@@ -256,7 +256,7 @@ This is a ~200GB server
 214.379.664.412 (199.66 GB) of 214.379.664.412 (199.66 GB) in 154.975 files shown
 ```
 so for 4900 versions you need
-200GB*4900 = ~980TB with something like tar, 7z, RAR etc (yes, 980 terabytes),
+200GB\*4900 = ~980TB with something like tar, 7z, RAR etc (yes, 980 terabytes),
 versus ~200GB (yes, 200GB) with zpaq.
 
 Same things for virtual machines (vmdks)
