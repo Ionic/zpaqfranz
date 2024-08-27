@@ -1,10 +1,10 @@
-# zpaqfranz: advanced multiversioned archiver, with HW acceleration and SFX (on Windows)      
+# zpaqfranz: advanced multiversioned archiver, with HW acceleration and SFX (on Windows)
 
-### Swiss army knife for backup and disaster recovery, like 7z or RAR on steroids, with deduplicated "snapshots" (versions). Conceptually similar to the Mac time machine, but much more efficiently. zpaq 7.15 fork.    
+### Swiss army knife for backup and disaster recovery, like 7z or RAR on steroids, with deduplicated "snapshots" (versions). Conceptually similar to the Mac time machine, but much more efficiently. zpaq 7.15 fork.
 
 |  Platform                                                           | OS package                    |  Version    | Video|
 |  ----------                                                         | -----                         |  ---------- |  -------    |
-|  [Windows 32/64bit](https://sourceforge.net/projects/zpaqfranz/files)   |                                  |![Badge](https://img.shields.io/github/v/release/fcorbelli/zpaqfranz)|      |      
+|  [Windows 32/64bit](https://sourceforge.net/projects/zpaqfranz/files)   |                                  |![Badge](https://img.shields.io/github/v/release/fcorbelli/zpaqfranz)|      |
 |  [OpenBSD](http://www.francocorbelli.it/zpaqfranz/openbsd)                 |`pkg_add zpaqfranz`            |![Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fopenbsd.app%2F%3Fsearch%3Dzpaqfranz%26format%3Djson%26current%3Don&query=%24..FULLPKGNAME&label=openbsd)|      |
 |  [FreeBSD](http://www.francocorbelli.it/zpaqfranz/freebsd)                 |`pkg install zpaqfranz`        |60.3a |      |
 |  [MacOS](http://www.francocorbelli.it/zpaqfranz/mac)                       |`brew install zpaqfranz`       |![Badge](https://img.shields.io/homebrew/v/zpaqfranz)|      |
@@ -14,7 +14,7 @@
 |  [Arch](http://www.francocorbelli.it/zpaqfranz/arch)                       | [AUR user repository](https://aur.archlinux.org/packages/zpaqfranz-git)|58.10i|[Terminal](http://www.francocorbelli.it/zpaqfranz/video/arch.mp4)
 |  [Solaris 11-64](http://www.francocorbelli.it/zpaqfranz/solaris)                 |                               |60.4a|      |
 |  [OmniOS 64](http://www.francocorbelli.it/zpaqfranz/omnios)                   |                               |60.4a|      |
-|  [QNAP (Annapurna)](http://www.francocorbelli.it/zpaqfranz/qnap)           |                               |60.3a|      | 
+|  [QNAP (Annapurna)](http://www.francocorbelli.it/zpaqfranz/qnap)           |                               |60.3a|      |
 |  [Haiku](http://www.francocorbelli.it/zpaqfranz/haiku)                     |                               |60.3a|      |
 |  [ESXi](http://www.francocorbelli.it/zpaqfranz/esxi)                       |                               |60.3a|
 | [Freeware GUI for Windows](https://github.com/fcorbelli/zpaqfranz/wiki/PAKKA-Windows-32-bit-extractor) |   |[latest](http://www.francocorbelli.it/pakka/build/latest/pakka_latest.zip)  |      |
@@ -40,11 +40,11 @@ _As you can see, the .7z "daily" 5x backups takes ~ 5x the space of the .zpaq_
 
 ## Seeing is believing ("real world")
 
-I thought it's best to show the difference for a more realistic example.  
+I thought it's best to show the difference for a more realistic example.
 
 Physical (small fileserver) Xeon machine with 8 cores, 64GB RAM and NVMe disks, plus Solaris-based NAS, 1Gb ethernet
 
-Rsync update from filesystem to filesystem (real speed)  
+Rsync update from filesystem to filesystem (real speed)
 
 https://user-images.githubusercontent.com/77727889/215152167-c6ce107a-6345-4060-b7a7-33ad30b269ee.mp4
 
@@ -54,7 +54,7 @@ Rsync update to Solaris NAS (real speed)
 https://user-images.githubusercontent.com/77727889/215152259-2baa7001-d838-40de-b56c-6fe3feff9f1b.mp4
 
 
-Backup update from file system with zpaqfranz (real speed)  
+Backup update from file system with zpaqfranz (real speed)
 
 https://user-images.githubusercontent.com/77727889/215146670-1a11cd5d-6f00-4544-b797-9ca288ae12b1.mp4
 
@@ -65,14 +65,14 @@ https://user-images.githubusercontent.com/77727889/215147310-cc760f20-08b8-4088-
 # What?
 
 At every run only data changed since the last execution will be added, creating a new version (the "snapshot").
-It is then possible to restore the data @ the single version, just like snapshots by zfs or virtual machines, but a single-file level.  
-- Keeps a forever-to-ever copy (even thousands of versions), conceptually similar to Mac's time machine, but much more efficiently.  
-- Ideal for virtual machine disk storage (ex backup of vmdk), virtual disks (VHDx) and even TrueCrypt containers.  
-- Easily handles millions of files and tens of TBs of data.  
-- Allows rsync (or zfs replica) copies to the cloud with minimal data transfer and encryption.    
+It is then possible to restore the data @ the single version, just like snapshots by zfs or virtual machines, but a single-file level.
+- Keeps a forever-to-ever copy (even thousands of versions), conceptually similar to Mac's time machine, but much more efficiently.
+- Ideal for virtual machine disk storage (ex backup of vmdk), virtual disks (VHDx) and even TrueCrypt containers.
+- Easily handles millions of files and tens of TBs of data.
+- Allows rsync (or zfs replica) copies to the cloud with minimal data transfer and encryption.
 - Multiple possibilities of data verification, fast, advanced and even paranoid.
 - Some optimizations for modern hardware (aka: SSD, NVMe, multithread).
-- By default triple-check with "chunked" SHA-1, XXHASH64 and CRC-32 (!).  
+- By default triple-check with "chunked" SHA-1, XXHASH64 and CRC-32 (!).
 
 ```
 For even higher level of paranoia, it is possible to use others hash algorithms, as
@@ -85,22 +85,22 @@ For even higher level of paranoia, it is possible to use others hash algorithms,
 - SHA-3-256 (NIST FIPS 202)
 - WHIRLPOOL (ISO/IEC 10118-3)
 - HIGHWAY (64,128,256)
-...And much more.  
+...And much more.
 
 
-**No complex (and fragile) repository folders, with hundreds of "whatever", just only a single file!**  
+**No complex (and fragile) repository folders, with hundreds of "whatever", just only a single file!**
 
 ## Windows client? Minimum size (without software) VSS backups
 
 _It is often important to copy the %desktop% folder, Thunderbird's data, %download% and generally the data folders of a Windows system, leaving out the programs_
 
-Real speed (encrypted) update of C: without software (-frugal)  
+Real speed (encrypted) update of C: without software (-frugal)
 
 https://user-images.githubusercontent.com/77727889/215269540-8e2c8641-0d3a-4f67-a243-ab617834c5de.mp4
 
 ## Are you a really paranoid Windows user (like me)? You can get sector-level copies of C:, too.
 
-_In this case the space used is obviously larger, as is the execution time, but even the "most difficult" folders are also taken. Deliberately the bitmap of occupied clusters is ignored: if you are paranoid, be all the way down!_  
+_In this case the space used is obviously larger, as is the execution time, but even the "most difficult" folders are also taken. Deliberately the bitmap of occupied clusters is ignored: if you are paranoid, be all the way down!_
 
 _It is just like a dd. You can't (for now) restore with zpaqfranz. You have to extract to a temporary folder and then use other software (e.g., 7z, OSFMount) to extract the files directly from the image_
 
@@ -109,8 +109,8 @@ Accelerated speed (encrypted) every-sector update of a 256GB C: @ ~150MB/s
 https://user-images.githubusercontent.com/77727889/215271199-94400833-f973-41d2-a018-3f2277a648a9.mp4
 
 
-### To date, there is no software, free or paid, that matches this characteristics  
-_AFAIK of course_  
+### To date, there is no software, free or paid, that matches this characteristics
+_AFAIK of course_
 10+ years of developing (2009-now).
 
 **Who did that?**
@@ -157,7 +157,7 @@ https://user-images.githubusercontent.com/77727889/215271989-5a77e1f1-8fba-422b-
 **ZPAQ (zpaqfranz) allows you to NEVER delete the data that is stored and will be available forever (in reality typically you starts from scratch every 1,000 or 2,000 versions, for speed reasons, on HDD. 10K+ on SSD), and restore the files present to each archived version, even if a month or three years ago.**
 
 
-Real-speed updating (on QNAP NAS) of a small server (300GB); ~7GB of Thunderbird mbox become ~6MB (!) in ~4 minutes. 
+Real-speed updating (on QNAP NAS) of a small server (300GB); ~7GB of Thunderbird mbox become ~6MB (!) in ~4 minutes.
 
 https://user-images.githubusercontent.com/77727889/215268613-e07e385c-0880-4534-ae35-0db8925cee6b.mp4
 
@@ -263,8 +263,8 @@ Same things for virtual machines (vmdks)
 
 ## Why you say uniqueness? We got (hb) hashbackup, borg, restic, bupstash etc ##
 
-Because other software (sometimes very, very good) runs on complex "repositories", very fragile and way too hard to manage (at least for my tastes).  
-It may happen that you have to worry about backing up ... the backup, because maybe some files were lost during a transfer, corrupted etc.  
+Because other software (sometimes very, very good) runs on complex "repositories", very fragile and way too hard to manage (at least for my tastes).
+It may happen that you have to worry about backing up ... the backup, because maybe some files were lost during a transfer, corrupted etc.
 _If it's simple, maybe it will work_
 
 ## Too good to be true? ##
@@ -277,21 +277,21 @@ There are more efficient deduplicators.
 
 But what I have never found is a combination of these that is so simple to use and reliable, with excellent handling of non-Latin filenames (Chinese, Russian etc).
 
-This is the key: you don't have to use complex "pipe" of tar | srep | zstd | something hoping that everything will runs file, but a single ~4MB executable, with 7z-like commands.  
+This is the key: you don't have to use complex "pipe" of tar | srep | zstd | something hoping that everything will runs file, but a single ~4MB executable, with 7z-like commands.
 You don't even have to install a complex program with many dependencies that will have to read a folder (the repository) with maybe thousands of files, hoping that they are all fully functional.
 
-There are also many great features for backup, I mention only the greatest.  
+There are also many great features for backup, I mention only the greatest.
 **The ZPAQ file is "in addition", it is never modified**
 
-So rsync --append will copy only the portion actually added, for example on ssh tunnel to a remote server, or local NAS (QNAP etc) with tiny times.  
-TRANSLATION  
+So rsync --append will copy only the portion actually added, for example on ssh tunnel to a remote server, or local NAS (QNAP etc) with tiny times.
+TRANSLATION
 You can pay ~$4 a month for 1TB cloud-storage-space to store just about everything
 
 You don't have to copy or synchronize let's say 700GB of tar.gz,7z or whatever, but only (say) the 2GB added in the last copy, the first 698GB are untouched.
 
 This opens up the concrete possibility of using VDSL connections (upload ~ 2/4MB /s) to backup even virtual servers of hundreds of gigabytes in a few minutes.
 
-In this (accelerated) video the rsync transfer of 2 remote backups: "standard" .zpaq archive (file level) AND zfsbackup (bit-level) for a small real-world server 1 day-update of work 
+In this (accelerated) video the rsync transfer of 2 remote backups: "standard" .zpaq archive (file level) AND zfsbackup (bit-level) for a small real-world server 1 day-update of work
 
 https://user-images.githubusercontent.com/77727889/215267855-22bf875c-90ee-47d1-8f8f-c2d0fa2ab201.mp4
 
@@ -300,51 +300,51 @@ https://user-images.githubusercontent.com/77727889/215267855-22bf875c-90ee-47d1-
 
 In the makefile just put at top a zpaq-save-everything and you will keep all the versions of your software, even with libraries, SQL dump etc.
 A single archive keeps everything, forever, with just one command (or two, for verify)
-    
+
 **Defects?**
 
 Some.
 
-The main one is that the listing of files is not very fast, when there are many versions (thousands), due to the structure of the archiver-file-format. 
+The main one is that the listing of files is not very fast, when there are many versions (thousands), due to the structure of the archiver-file-format.
 *I could get rid of it, but at the cost of breaking the backward compatibility of the file format, so I don't want to. On 52+ there is a workaround (-filelist)*
 
 It is not the fastest tool out there, with real world performance of 80-200MB/s (depending on the case and HW of course).
 *Not a big deal for me (I have very powerful HW, and/or run nightly cron-tasks)*
 
-Extraction can require a number of seeks (due to various deduplicated blocks), which can slow down extraction on magnetic disks (but not on SSDs).  
+Extraction can require a number of seeks (due to various deduplicated blocks), which can slow down extraction on magnetic disks (but not on SSDs).
 *If you have plenty of RAM now it is possible to bypass with the w command*
 
 No other significant ones come to mind, except that it is known and used by few
 
-**Very hard to use?**  
-It is a tool for power users and administrators, who are used to the command line. A text-based GUI is being developed to make data selection and complex extraction easier (!).  
+**Very hard to use?**
+It is a tool for power users and administrators, who are used to the command line. A text-based GUI is being developed to make data selection and complex extraction easier (!).
 
-In this example we want to extract all the .cpp files as .bak from the 1.zpaq archive. This is something you typically cannot do with other archives such as tar, 7z, rar etc.  
-### With a "sort of" WYSIWYG 'composer' 
-First **f** key (find) and entering .cpp  
-Then **s** (search) every .cpp substring  
-Then **r** (replace) with .bak  
-Then **t** (to) for the z:\example folder  
-Finally **x** to run the extraction  
+In this example we want to extract all the .cpp files as .bak from the 1.zpaq archive. This is something you typically cannot do with other archives such as tar, 7z, rar etc.
+### With a "sort of" WYSIWYG 'composer'
+First **f** key (find) and entering .cpp
+Then **s** (search) every .cpp substring
+Then **r** (replace) with .bak
+Then **t** (to) for the z:\example folder
+Finally **x** to run the extraction
 
 https://user-images.githubusercontent.com/77727889/226925740-d62b92ae-4eee-43ac-94a9-e1a6dae684c1.mp4
 
 
 **I do not trust you, but I am becoming curious. So?**
 
-On **FreeBSD** [you can try to build the port (of paq, inside archivers)](https://www.freshports.org/archivers/paq) but it is very, very, very old (v 6.57 of 2014)  
+On **FreeBSD** [you can try to build the port (of paq, inside archivers)](https://www.freshports.org/archivers/paq) but it is very, very, very old (v 6.57 of 2014)
 You can get a "not too old" zpaqfranz with a `pkg install zpaqfranz`
 
 On **OpenBSD** `pkg_add zpaqfranz` is usually rather updated
 
-On **Debian** [there is a zpaq 7.15 package](https://packages.debian.org/sid/utils/zpaq)  
-You can download the original version (7.15 of 2016) directly from the author's website, and compile it, or get the same from github.  
-In this case be careful, because the source is divided into 3 source files, but nothing difficult for the compilation.  
+On **Debian** [there is a zpaq 7.15 package](https://packages.debian.org/sid/utils/zpaq)
+You can download the original version (7.15 of 2016) directly from the author's website, and compile it, or get the same from github.
+In this case be careful, because the source is divided into 3 source files, but nothing difficult for the compilation.
 
-**OK, let's assume I want to try out zpaqfranz. How?**  
+**OK, let's assume I want to try out zpaqfranz. How?**
 
-From branch 51 all source code is merged in one zpaqfranz.cpp aiming to make it as easy as possible to compile on "strange" systems (NAS, vSphere etc).  
-Updating, compilation and Makefile are now trivial.  
+From branch 51 all source code is merged in one zpaqfranz.cpp aiming to make it as easy as possible to compile on "strange" systems (NAS, vSphere etc).
+Updating, compilation and Makefile are now trivial.
 
 # How to build
 
@@ -352,14 +352,14 @@ My main development platforms are INTEL Windows (non-Intel Windows (arm) current
 
 I rarely use Linux or MacOS or whatever (for compiling), so fixing may be needed.
 
-As explained the program is single file, be careful to link the pthread library.  
+As explained the program is single file, be careful to link the pthread library.
 You need it for ESXi too, even if it doesn't work. Don't be afraid, zpaqfranz knows!
 
 ### [Almost "universal" (minimal) Makefile](https://github.com/fcorbelli/zpaqfranz/wiki/Quickstart-Makefile)
 ### [Quicker and dirtier!](https://github.com/fcorbelli/zpaqfranz/wiki/Quickstart-quicker%E2%80%90and%E2%80%90dirtier)
 ### [DEFINEs at compile-time](https://github.com/fcorbelli/zpaqfranz/wiki/Quickstart-How-to-Build)
 ### [TARGET EXAMPLES](https://github.com/fcorbelli/zpaqfranz/wiki/Quickstart-Target-examples)
-### [HIDDEN GEMS](https://github.com/fcorbelli/zpaqfranz/wiki/Quickstart-Hidden-gems)
+### [HIDDEN GEMS](https://github.com/fcorbelli/zpaqfranz/wiki/Quickstart-Hidden-gems)/
 ### [STRANGE THINGS](https://github.com/fcorbelli/zpaqfranz/wiki/Quickstart-Strange-Things)
 
 
